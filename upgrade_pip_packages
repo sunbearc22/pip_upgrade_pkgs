@@ -1,0 +1,66 @@
+#!/bin/python3
+
+import subprocess
+from pprint import pprint
+import sys
+
+
+def get_pkgs():
+    try:
+        cmd = [sys.executable, '-m', 'pip', 'list']
+        completed = subprocess.run( cmd, check=True, stdout=subprocess.PIPE )
+    except subprocess.CalledProcessError as err:
+        print( 'ERROR:', err )
+    else:
+        for line in completed.stdout.decode('utf-8').splitlines()[2:]:
+            yield line
+
+
+def update_pkgs(piplist):
+    npackages = 0
+    nupgrades = 0
+    nerrors = 0
+    upgradelist = []
+    errorlist = []
+    for i in piplist:
+        npackages += 1
+        pkgname, ver = i.split()
+        print('\n',pkgname)
+        try:
+            cmd = [sys.executable, '-m', 'pip', 'install', '--upgrade',
+                   '--user', pkgname]
+            completed = subprocess.run( cmd, check=True, stdout=subprocess.PIPE )
+        except subprocess.CalledProcessError as err:
+            nerrors += 1
+            errorlist.append(pkgname)
+            print( 'ERROR: {}'.format(err) )
+        else:
+            for line in completed.stdout.decode('utf-8').splitlines():
+                print(line)
+                if 'Successfully installed' in line:
+                    nupgrades +=1
+                    upgradelist.append(pkgname)
+    return npackages, nupgrades, nerrors, upgradelist, errorlist
+
+
+def main():
+    print('====================================================')
+    print('UPGRADING ALL --USER PIP PACKAGES TO LATEST VERSION:')
+    print('====================================================')
+    pip_pkgs = get_pkgs() # created a generator
+    npackages, nupgrades, nerrors, upgradelist, errorlist \
+               = update_pkgs(pip_pkgs)
+    print('\nNo. of --user pip packages = {}'.format(npackages))
+    print('No. of upgrades            = {}'.format(nupgrades))
+    print('No. of upgrade errors      = {}'.format(nerrors))
+    if upgradelist:
+        print('Package(s) upgraded:')
+        pprint(upgradelist)
+    if errorlist:
+        print('Package(s) with upgrade error:')
+        pprint(errorlist)
+    print()
+    
+
+if __name__ == '__main__':
+    sys.exit( main() )
