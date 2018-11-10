@@ -9,7 +9,7 @@ Tested with python 3.5 and pip 18.1 via idle-python3.5 and terminal. <br/>
     2.1. via _idle-python3.5_:  Open script and press F5, or <br/>
     2.2. via _terminal_: Issue command `python3 -m upgrade_pip_packages`<br/>
 
-## Example of Final Output
+## Example of Final Output:
 ```
 No. of pip --user packages = 145
 No. of upgrades            = 5
