@@ -45,12 +45,12 @@ def update_pkgs(piplist):
 
 def main():
     print('====================================================')
-    print('UPGRADING ALL --USER PIP PACKAGES TO LATEST VERSION:')
+    print('UPGRADING ALL PIP --USER PACKAGES TO LATEST VERSION:')
     print('====================================================')
     pip_pkgs = get_pkgs() # created a generator
     npackages, nupgrades, nerrors, upgradelist, errorlist \
                = update_pkgs(pip_pkgs)
-    print('\nNo. of --user pip packages = {}'.format(npackages))
+    print('\nNo. of pip --user packages = {}'.format(npackages))
     print('No. of upgrades            = {}'.format(nupgrades))
     print('No. of upgrade errors      = {}'.format(nerrors))
     if upgradelist:
