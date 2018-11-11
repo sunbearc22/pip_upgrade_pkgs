@@ -1,7 +1,7 @@
 # upgrade_pip_packages
 
-A python 3 script to upgrade all `pip --user` packages to the latest version.<br/>
-Tested with `python 3.5` and `pip 18.1` via `idle-python3.5` and terminal. <br/>
+A python3 script to upgrade all `pip --user` packages to the latest version.<br/>
+Tested with `python 3.5` and `pip 18.1` via `idle-python3.5` and terminal in Ubuntu 16.04. <br/>
 
 ## Execution:
 1. Download script.<br/>
@@ -9,7 +9,7 @@ Tested with `python 3.5` and `pip 18.1` via `idle-python3.5` and terminal. <br/>
     2.1. via _idle-python3.5_:  Open script and press F5, or <br/>
     2.2. via _terminal_: Issue command `python3 -m upgrade_pip_packages`<br/>
 
-## Example of Final Output:
+## Example of Final Output (last section):
 ```
 No. of pip --user packages = 145
 No. of upgrades            = 5
