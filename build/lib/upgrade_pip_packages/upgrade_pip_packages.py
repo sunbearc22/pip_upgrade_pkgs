@@ -1,8 +1,8 @@
 #!/bin/python3
 
 import subprocess
-from pprint import pprint
 import sys
+from pprint import pprint
 
 
 def get_pkgs():
@@ -12,47 +12,43 @@ def get_pkgs():
     except subprocess.CalledProcessError as err:
         print( 'ERROR:', err )
     else:
-        for line in completed.stdout.decode('utf-8').splitlines()[2:]:
+        for line in completed.stdout.decode('utf-8').splitlines()[2:5]:
             yield line
 
 
 def upgrade_pkgs(piplist):
-    npackages = 0
-    nupgrades = 0
-    nerrors = 0
+    packagelist = []
     upgradelist = []
     errorlist = []
     for i in piplist:
-        npackages += 1
         pkgname, ver = i.split()
+        packagelist.append(pkgname)
         print('\n',pkgname)
         try:
             cmd = [sys.executable, '-m', 'pip', 'install', '--upgrade',
                    '--user', pkgname]
             completed = subprocess.run( cmd, check=True, stdout=subprocess.PIPE )
         except subprocess.CalledProcessError as err:
-            nerrors += 1
             errorlist.append(pkgname)
             print( 'ERROR: {}'.format(err) )
         else:
             for line in completed.stdout.decode('utf-8').splitlines():
                 print(line)
                 if 'Successfully installed' in line:
-                    nupgrades +=1
                     upgradelist.append(pkgname)
-    return npackages, nupgrades, nerrors, upgradelist, errorlist
+    return packagelist, upgradelist, errorlist
 
 
 def main():
-    print('====================================================')
-    print('UPGRADING ALL PIP --USER PACKAGES TO LATEST VERSION:')
-    print('====================================================')
+    print('=============================================')
+    print('UPGRADING ALL PIP PACKAGES TO LATEST VERSION:')
+    print('=============================================')
     pip_pkgs = get_pkgs() # created a generator
-    npackages, nupgrades, nerrors, upgradelist, errorlist \
-               = upgrade_pkgs(pip_pkgs)
-    print('\nNo. of pip --user packages = {}'.format(npackages))
-    print('No. of upgrades            = {}'.format(nupgrades))
-    print('No. of upgrade errors      = {}'.format(nerrors))
+    packagelist, upgradelist, errorlist  = upgrade_pkgs(pip_pkgs)
+    print('\nSummary:')
+    print('No. of pip  packages  = {}'.format( len(packagelist) ))
+    print('No. of upgrades       = {}'.format( len(upgradelist) ))
+    print('No. of upgrade errors = {}'.format( len(errorlist) ))
     if upgradelist:
         print('Package(s) upgraded:')
         pprint(upgradelist)

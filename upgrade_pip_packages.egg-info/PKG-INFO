@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: upgrade-pip-packages
+Version: 0.0.1rc2
+Summary: Upgrade all installed pip packages to latest version.
+Home-page: https://github.com/sunbearc22/upgrade_pip_packages
+Author: sunbearc22
+Author-email: sunbear.c22@gmail.com
+License: MIT
+Description: # upgrade_pip_packages
+        
+        A python3 (ver. >=3.5) script to upgrade all installed `pip` packages to the latest version.<br/>
+        Tested with `python 3.5` and `pip 18.1` via both `idle-python3.5` and the terminal in Ubuntu 16.04. <br/>
+        
+        _Remark: This script won't work with Python 2 or Python <= 3.4._<br/>
+        
+        ## Execution:
+        1. Download script.<br/>
+        2. Run script:<br/>
+            2.1. via _idle-python3.5_:  Open script and press F5, or <br/>
+            2.2. via _terminal_: Issue command `python3 -m upgrade_pip_packages`<br/>
+        
+        ## Example of Final Output (last section):
+        ```
+        No. of pip --user packages = 145
+        No. of upgrades            = 5
+        No. of upgrade errors      = 2
+        Package(s) upgraded:
+        ['beautifulsoup4', 'bleach', 'blinker', `chardet`, 'checkbox-support']
+        Package(s) with upgrade error:
+        ['pycups', 'pycurl']
+        ```
+        
+        
+Keywords: pip pip3 upgrade packages
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console 
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: ~=3.5
+Description-Content-Type: text/markdown

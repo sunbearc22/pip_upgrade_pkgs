@@ -1,0 +1,3 @@
+[console_scripts]
+upgrade_pip_packages = upgrade_pip_packages.upgrade_pip_packages:main
+
