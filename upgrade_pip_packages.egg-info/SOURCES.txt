@@ -1,9 +1,0 @@
-README.md
-setup.py
-upgrade_pip_packages/__init__.py
-upgrade_pip_packages/upgrade_pip_packages.py
-upgrade_pip_packages.egg-info/PKG-INFO
-upgrade_pip_packages.egg-info/SOURCES.txt
-upgrade_pip_packages.egg-info/dependency_links.txt
-upgrade_pip_packages.egg-info/entry_points.txt
-upgrade_pip_packages.egg-info/top_level.txt
