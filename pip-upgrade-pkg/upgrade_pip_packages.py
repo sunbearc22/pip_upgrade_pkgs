@@ -7,12 +7,12 @@ from pprint import pprint
 
 def get_pkgs():
     try:
-        cmd = [sys.executable, '-m', 'pip', 'list']
+        cmd = [sys.executable, '-m', 'pip', 'list', '--user']
         completed = subprocess.run( cmd, check=True, stdout=subprocess.PIPE )
     except subprocess.CalledProcessError as err:
         print( 'ERROR:', err )
     else:
-        for line in completed.stdout.decode('utf-8').splitlines()[2:10]:
+        for line in completed.stdout.decode('utf-8').splitlines()[2:]:
             yield line
 
 
@@ -40,15 +40,15 @@ def upgrade_pkgs(piplist):
 
 
 def main():
-    print('=============================================')
-    print('UPGRADING ALL PIP PACKAGES TO LATEST VERSION:')
-    print('=============================================')
+    print('====================================================')
+    print('UPGRADING ALL PIP --USER PACKAGES TO LATEST VERSION:')
+    print('====================================================')
     pip_pkgs = get_pkgs() # created a generator
     packagelist, upgradelist, errorlist  = upgrade_pkgs(pip_pkgs)
     print('\nSUMMARY:')
     print('Pre-installed pip packages = {}'.format( len(packagelist) ))
-    print('No. of upgrades          = {}'.format( len(upgradelist) ))
-    print('No. of upgrade errors    = {}'.format( len(errorlist) ))
+    print('No. of upgrades            = {}'.format( len(upgradelist) ))
+    print('No. of upgrade errors      = {}'.format( len(errorlist) ))
     if upgradelist:
         print('Package(s) upgraded:')
         pprint(upgradelist)

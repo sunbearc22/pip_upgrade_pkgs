@@ -1,0 +1,5 @@
+/build
+/dist
+/upgrade_pip_packages.egg-info
+/pip-upgrade-pkg.egg-info
+/pip-upgrade-pkg/__pycache__
