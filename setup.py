@@ -4,22 +4,22 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    #Primary info
-    name="pip-upgrade-pkg",
-    version="0.0.1rc1", #PEP440
-    packages=["pip-upgrade-pkg"],
+    #Require fields
+    name="pip_upgrade_pkgs",
+    version="0.0.1", #PEP440
+    packages=find_packages(),
 
     #Project description
     long_description=long_description,
     long_description_content_type="text/markdown",
 
     #Project links
-    url="https://github.com/sunbearc22/pip-upgrade-pkg", # project home page, if any
+    url="https://github.com/sunbearc22/pip_upgrade_pkgs", # project home page, if any
 
     #Meta
     description='A single command to upgrade outdated "pip install --user" packages.',
     license="MIT",
-    keywords="pip upgrade packages",
+    keywords="pip upgrade packaging",
     python_requires='~=3.5',
     install_requires=['pip~=18.0'],
     setup_requires=['pip~=18.0'],
@@ -34,7 +34,8 @@ setup(
         "Intended Audience :: End Users/Desktop",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Build Tools",
-        "Topic :: Software Management :: Upgrade Tools",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: System :: Archiving :: Packaging",
         "Environment :: Console ",
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX :: Linux",
@@ -47,7 +48,7 @@ setup(
     #console_script syntax is [command=package_name.module_name:function]
     entry_points={
         'console_scripts': [
-            'pip-upgrade-pkg=pip-upgrade-pkg.pip-upgrade-pkg:main',
+            'pip_upgrade_pkgs=pip_upgrade_pkgs.pip_upgrade_pkgs:main',
             ],
         },
 

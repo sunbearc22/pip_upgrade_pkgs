@@ -18,7 +18,7 @@ def get_outdated_pkgs():
         print( 'ERROR:', err )
     else:
         outdated_pkgs=[ line for line in
-                        completed.stdout.decode('utf-8').splitlines()[2:3] ]
+                        completed.stdout.decode('utf-8').splitlines()[2:] ]
         print('Outdated packages detected = {}.'.format(len(outdated_pkgs)) )
         print('Initiating upgrading...\n')
         return outdated_pkgs 

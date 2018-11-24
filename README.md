@@ -1,9 +1,9 @@
-# pip-upgrade-pkg
+# pip_upgrade_pkgs
 
 A single command to upgrade outdated `pip install --user` packages.
 
 ```
-$ pip-upgrade-pkg
+$ pip_upgrade_pkgs
 =====================================================
 UPGRADING ALL OUTDATED "pip install --user" PACKAGES:
 =====================================================
@@ -47,18 +47,27 @@ Ubuntu 16.04 (Xenial) and above
 ## Installation
 Submit this terminal command:
 
-    $ pip install --user pip-upgrade-pkg
+    $ pip install --user pip_upgrade_pkgs
 
 For python3.5: 
 
-- this package will be installed in ~/.local/lib/python3.5/site-packages/pip-upgrade-pkg
+- this package will be installed in ~/.local/lib/python3.5/site-packages/pip_upgrade_pkgs
 
-- this package execution script will be installed in ~/.local/bin/pip-upgrade-pkg.
+- this package execution script will be installed in ~/.local/bin/pip_upgrade_pkgs.
 
 ## Execution:
 Submit this terminal command:
 
-    $ pip-upgrade-pkg
+    $ pip_upgrade_pkgs
+
+or, access its module and execute its main() function:
+
+    $ python3
+    Python         3.5.2 (default, Nov 12 2018, 13:43:14)
+    [GCC 5.4.0 20160609] on linux
+    Type     "help", "copyright", "credits" or "license" for more information.
+    >>> import pip_upgrade_pkgs
+    >>> pip_upgrade_pkgs.main()
 
 
 
