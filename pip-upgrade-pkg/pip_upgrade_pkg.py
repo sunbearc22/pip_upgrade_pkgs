@@ -2,6 +2,9 @@
 
 ''' Upgrading only outdated "pip install --user" packages.'''
 
+# Only python 3.5 and above may use this script because method subprocess.run()
+# is used.
+
 import subprocess
 import sys
 
