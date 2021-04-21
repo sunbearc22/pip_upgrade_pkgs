@@ -2,3 +2,4 @@
 /dist
 /pip_upgrade_pkgs.egg-info
 /pip_upgrade_pkgs/__pycache__
+/versions

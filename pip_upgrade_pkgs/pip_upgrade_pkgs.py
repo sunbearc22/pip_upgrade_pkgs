@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 
-def get_outdated_pkgs():
+def get_outdated_pip3_user_pkgs():
     outdated_pkgs =[]
     try:
         cmd = [sys.executable, '-m', 'pip', 'list', '--user', '--outdated']
@@ -20,11 +20,11 @@ def get_outdated_pkgs():
         outdated_pkgs=[ line for line in
                         completed.stdout.decode('utf-8').splitlines()[2:] ]
         print('Outdated packages detected = {}.'.format(len(outdated_pkgs)) )
-        print('Initiating upgrading...\n')
         return outdated_pkgs 
         
 
-def upgrade_outdated_pkgs(outdated_pkgs):
+def upgrade_outdated_pip3_user_pkgs(outdated_pkgs):
+    print('Initiating upgrading...\n')
     upgradelist = []
     errorlist = []
     count=0
@@ -53,16 +53,20 @@ def upgrade_outdated_pkgs(outdated_pkgs):
 
 def main():
     print('=====================================================')
-    print('UPGRADING ALL OUTDATED "pip install --user" PACKAGES:')
+    print('UPGRADING ALL OUTDATED "pip3 install --user" PACKAGES:')
     print('=====================================================')
     print()
-    outdated_pkgs = get_outdated_pkgs() # created a list
-    upgradelist, errorlist  = upgrade_outdated_pkgs(outdated_pkgs)
-    total=len(outdated_pkgs)
-    print('\nSUMMARY:')
-    print('No. of packages upgraded = {}/{}'.format( len(upgradelist), total ))
-    print('No. of upgrade errors    = {}/{}'.format( len(errorlist), total ))
+    outdated_pkgs = get_outdated_pip3_user_pkgs() # created a list
+    if len( outdated_pkgs ): 
+        upgradelist, errorlist  = upgrade_outdated_pip3_user_pkgs(outdated_pkgs)
+        total=len(outdated_pkgs)
+        print('\nSUMMARY:')
+        print('No. of packages upgraded = {}/{}'.format( len(upgradelist), total ))
+        print('No. of upgrade errors    = {}/{}'.format( len(errorlist), total ))
+    else:
+        print('Upgrading is not required.')
     print()
+        
     
 
 if __name__ == '__main__':
